@@ -6,11 +6,10 @@ object Dependencies {
     val catsCore = "2.0.0"
     val catsEffect = "2.0.0"
     val circe = "0.12.1"
-    val scalaTest = "3.0.5"
-    val http4s = "0.20.0"
+    val scalaTest = "3.2.0"
+    val http4s = "0.21.6"
     val slf4j = "1.7.26"
     val logback = "1.2.3"
-    val uPickle = "0.7.1"
     val mock = "4.4.0"
     val mockTest = "3.1.0"
   }
@@ -38,11 +37,6 @@ object Dependencies {
     "ch.qos.logback" % "logback-classic" % V.logback
   )
 
-  val uPickle = Seq(
-    "com.lihaoyi" %% "upickle" % V.uPickle,
-    "com.lihaoyi" %% "upack" % V.uPickle
-  )
-
   val mock = Seq(
     "org.scalamock" %% "scalamock" % V.mock % Test,
     "org.scalatest" %% "scalatest" % V.mockTest % Test
@@ -58,7 +52,6 @@ object Dependencies {
     circe ++
     http4s ++
     logger ++
-    uPickle ++
     mock ++
     testContainers
 }

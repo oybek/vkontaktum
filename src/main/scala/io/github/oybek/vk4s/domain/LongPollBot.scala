@@ -40,6 +40,14 @@ abstract class LongPollBot[F[_]: Sync](
             }
             _ <- start
           } yield ()
+
+        case Left(e) =>
+          for {
+            _ <- Sync[F].delay {
+              log.error(s"something went too wrong: ${e.getMessage}")
+            }
+            _ <- start
+          } yield ()
       }
     } yield ()
 
