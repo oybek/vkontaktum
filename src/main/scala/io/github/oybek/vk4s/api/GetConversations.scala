@@ -25,4 +25,4 @@ case class GetConversationsReq(filter: Filter,
     }.mkString("&")
 }
 
-case class GetConversationsRes(count: Int, items: List[ConversationAndLastMessage])
+case class GetConversationsRes(response: Response[ConversationAndLastMessage])

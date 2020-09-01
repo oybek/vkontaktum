@@ -20,5 +20,4 @@ case class WallGetReq(ownerId: Long,
     }.mkString("&")
 }
 
-case class WallGetRes(response: Response)
-case class Response(count: Long, items: List[WallPostNew])
+case class WallGetRes(response: Response[WallPostNew])
