@@ -15,9 +15,17 @@ abstract class LongPollBot[F[_]: Sync](
 
   implicit def log: Logger
 
-  // TODO: can we use val here?
-  final private def getLongPollServer: F[GetLongPollServerRes] =
-    vkApi.getLongPollServer(getLongPollServerReq)
+  final private val getLongPollServer: F[GetLongPollServerRes] =
+    for {
+      attemptRes <- vkApi.getLongPollServer(getLongPollServerReq).attempt
+      res <- attemptRes match {
+        case Left(e: Exception) =>
+          Sync[F].delay { log.warn(s"something went wrong: ${e.getMessage}") } *> getLongPollServer
+        case Left(e) =>
+          Sync[F].delay { log.warn(s"something went too wrong: ${e.getMessage}") } *> getLongPollServer
+        case Right(x) => x.pure[F]
+      }
+    } yield res
 
   final def poll(pollReq: PollReq): F[Unit] =
     for {
@@ -51,7 +59,7 @@ abstract class LongPollBot[F[_]: Sync](
       }
     } yield ()
 
-  final def start: F[Unit] =
+  final val start: F[Unit] =
     for {
       getLongPollServerRes <- getLongPollServer
       longPollServer = getLongPollServerRes.response
