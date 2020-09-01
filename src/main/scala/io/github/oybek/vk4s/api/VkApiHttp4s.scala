@@ -3,8 +3,8 @@ package io.github.oybek.vk4s.api
 import cats.MonadError
 import cats.effect.{ConcurrentEffect, ContextShift, Sync}
 import cats.implicits._
-import io.circe.generic.auto._
-import io.github.oybek.vk4s.model.{GetLongPollServerReq, GetLongPollServerRes, PollReq, PollRes, SendMessageReq, WallCommentReq, WallCommentRes, WallGetReq, WallGetRes}
+import io.circe.generic.extras.auto._
+import io.github.oybek.vk4s.api.WallGetRes
 import org.http4s._
 import org.http4s.circe._
 import org.http4s.client.Client
@@ -78,5 +78,16 @@ class VkApiHttp4s[F[_]: ConcurrentEffect: ContextShift](client: Client[F])(
         .withMethod(POST)
         .withUri(uri)
       res <- client.expect(req)(jsonOf[F, WallGetRes])
+    } yield res
+
+  override def getConversations(getConversationsReq: GetConversationsReq): F[GetConversationsRes] =
+    for {
+      uri <- F.fromEither[Uri](
+        Uri.fromString(s"$methodUrl/messages.getConversations?${getConversationsReq.toRequestStr}")
+      )
+      req = Request[F]()
+        .withMethod(POST)
+        .withUri(uri)
+      res <- client.expect(req)(jsonOf[F, GetConversationsRes])
     } yield res
 }

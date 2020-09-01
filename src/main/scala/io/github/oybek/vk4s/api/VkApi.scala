@@ -1,6 +1,6 @@
 package io.github.oybek.vk4s.api
 
-import io.github.oybek.vk4s.model.{GetLongPollServerReq, GetLongPollServerRes, PollReq, PollRes, SendMessageReq, WallCommentReq, WallCommentRes, WallGetReq, WallGetRes}
+import io.github.oybek.vk4s.api.WallGetRes
 
 trait VkApi[F[_]] {
   def getLongPollServer(
@@ -11,4 +11,6 @@ trait VkApi[F[_]] {
   def sendMessage(sendMessageReq: SendMessageReq): F[String]
   def wallComment(wallCommentReq: WallCommentReq): F[WallCommentRes]
   def wallGet(wallGetReq: WallGetReq): F[WallGetRes]
+
+  def getConversations(getConversationsReq: GetConversationsReq): F[GetConversationsRes]
 }

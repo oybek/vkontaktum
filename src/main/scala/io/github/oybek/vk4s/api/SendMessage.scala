@@ -1,4 +1,4 @@
-package io.github.oybek.vk4s.model
+package io.github.oybek.vk4s.api
 
 import cats.effect.Sync
 import io.circe.generic.extras.Configuration

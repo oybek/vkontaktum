@@ -5,8 +5,8 @@ import cats.effect.syntax.all._
 import cats.effect.{Async, Clock, Concurrent, Sync, Timer}
 import cats.syntax.all._
 import io.github.oybek.vk4s.domain.{Geo, LongPollBot, MessageNew, WallPostNew, WallReplyNew}
-import io.github.oybek.vk4s.api.VkApi
-import io.github.oybek.vk4s.model.{GetLongPollServerReq, Keyboard, SendMessageReq}
+import io.github.oybek.vk4s.api.{GetLongPollServerReq, Keyboard, SendMessageReq, VkApi}
+import io.github.oybek.vk4s.api.Keyboard
 import org.http4s.client.Client
 import org.slf4j.{Logger, LoggerFactory}
 

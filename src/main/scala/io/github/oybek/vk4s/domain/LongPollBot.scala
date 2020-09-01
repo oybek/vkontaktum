@@ -2,8 +2,8 @@ package io.github.oybek.vk4s.domain
 
 import cats.implicits._
 import cats.effect.Sync
-import io.github.oybek.vk4s.api.VkApi
-import io.github.oybek.vk4s.model.{GetLongPollServerReq, GetLongPollServerRes, PollFailed, PollReq, PollWithUpdates}
+import io.github.oybek.vk4s.api.{GetLongPollServerReq, GetLongPollServerRes, PollFailed, PollReq, PollWithUpdates, VkApi}
+import io.github.oybek.vk4s.api.PollFailed
 import org.http4s.client.Client
 import org.slf4j.{Logger, LoggerFactory}
 

@@ -1,4 +1,4 @@
-package io.github.oybek.vk4s.model
+package io.github.oybek.vk4s.api
 
 case class GetLongPollServerReq(groupId: String,
                                 accessToken: String,

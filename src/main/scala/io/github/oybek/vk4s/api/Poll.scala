@@ -1,4 +1,4 @@
-package io.github.oybek.vk4s.model
+package io.github.oybek.vk4s.api
 
 import cats.syntax.functor._
 import io.circe.Decoder
