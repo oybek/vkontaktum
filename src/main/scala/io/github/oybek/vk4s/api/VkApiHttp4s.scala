@@ -13,8 +13,7 @@ import org.http4s.dsl.io._
 import scala.concurrent.ExecutionContext
 
 class VkApiHttp4s[F[_]: ConcurrentEffect: ContextShift](client: Client[F])(
-  implicit F: MonadError[F, Throwable],
-  ec: ExecutionContext
+  implicit F: MonadError[F, Throwable]
 ) extends VkApi[F] {
 
   private lazy val baseUrl = "https://api.vk.com"

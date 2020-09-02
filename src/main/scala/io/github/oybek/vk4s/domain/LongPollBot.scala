@@ -20,9 +20,9 @@ abstract class LongPollBot[F[_]: Sync](
       attemptRes <- vkApi.getLongPollServer(getLongPollServerReq).attempt
       res <- attemptRes match {
         case Left(e: Exception) =>
-          Sync[F].delay { log.warn(s"something went wrong: ${e.getMessage}") } *> getLongPollServer
+          Sync[F].delay { log.warn(s"something went wrong: ${e.getMessage}") } >> getLongPollServer
         case Left(e) =>
-          Sync[F].delay { log.warn(s"something went too wrong: ${e.getMessage}") } *> getLongPollServer
+          Sync[F].delay { log.warn(s"something went too wrong: ${e.getMessage}") } >> getLongPollServer
         case Right(x) => x.pure[F]
       }
     } yield res
