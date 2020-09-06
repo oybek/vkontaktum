@@ -1,5 +1,6 @@
 package io.github.oybek.vk4s.api
 
+import cats.data.NonEmptyList
 import cats.effect.Sync
 import io.circe.generic.extras.Configuration
 import io.circe.generic.extras.semiauto._
@@ -12,6 +13,7 @@ case class SendMessageReq(peerId: Long,
                           version: String,
                           randomId: Long,
                           accessToken: String,
+                          userIds: Option[NonEmptyList[Long]] = None,
                           attachment: Option[String] = None,
                           keyboard: Option[Keyboard] = None)
     extends Req {
@@ -24,6 +26,7 @@ case class SendMessageReq(peerId: Long,
         "access_token" -> Some(accessToken),
         "v" -> Some(version),
         "random_id" -> Some(randomId.toString),
+        "user_ids" -> userIds.map(_.toList.mkString(",")),
         "message" -> Some(message),
         "attachment" -> attachment,
         "keyboard" -> keyboard.map(x =>
