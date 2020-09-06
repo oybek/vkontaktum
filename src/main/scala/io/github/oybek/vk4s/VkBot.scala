@@ -36,11 +36,11 @@ class VkBot[F[_]: Async: Timer: Concurrent](getLongPollServerReq: GetLongPollSer
     Sync[F].unit
 
   def sendMessage(to: Long,
-                          text: String,
-                          attachment: Option[String] = None,
-                          keyboard: Option[Keyboard] = None): F[Unit] = {
+                  text: String,
+                  attachment: Option[String] = None,
+                  keyboard: Option[Keyboard] = None): F[Unit] = {
     val sendMessageReq = SendMessageReq(
-      peerId = to,
+      peerId = to.some,
       message = text,
       version = getLongPollServerReq.version,
       randomId = 0,

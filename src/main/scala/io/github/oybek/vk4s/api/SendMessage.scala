@@ -8,7 +8,7 @@ import io.circe.syntax._
 import io.circe.{Encoder, Printer}
 import org.http4s.multipart.{Multipart, Part}
 
-case class SendMessageReq(peerId: Long,
+case class SendMessageReq(peerId: Option[Long],
                           message: String,
                           version: String,
                           randomId: Long,
@@ -22,7 +22,7 @@ case class SendMessageReq(peerId: Long,
   def toMultipart[F[_]: Sync]: Multipart[F] =
     Multipart[F](
       Vector(
-        "peer_id" -> Some(peerId.toString),
+        "peer_id" -> peerId.map(_.toString),
         "access_token" -> Some(accessToken),
         "v" -> Some(version),
         "random_id" -> Some(randomId.toString),
