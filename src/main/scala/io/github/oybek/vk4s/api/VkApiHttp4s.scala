@@ -55,6 +55,17 @@ class VkApiHttp4s[F[_]: ConcurrentEffect: ContextShift](client: Client[F])(
     } yield res
   }
 
+  override def getMessageById(getMessageByIdReq: GetMessageByIdReq): F[GetMessageByIdRes] =
+    for {
+      uri <- F.fromEither[Uri](
+        Uri.fromString(s"$methodUrl/messages.getById?${getMessageByIdReq.toRequestStr}")
+      )
+      req = Request[F]()
+        .withMethod(POST)
+        .withUri(uri)
+      res <- client.expect(req)(jsonOf[F, GetMessageByIdRes])
+    } yield res
+
   override def wallComment(wallCommentReq: WallCommentReq): F[WallCommentRes] =
     for {
       uri <- F.fromEither[Uri](

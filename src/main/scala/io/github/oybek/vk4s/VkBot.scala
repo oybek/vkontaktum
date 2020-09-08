@@ -23,10 +23,10 @@ class VkBot[F[_]: Async: Timer: Concurrent](getLongPollServerReq: GetLongPollSer
       (message match {
       // TODO: use custom extractors for pattern matching
       // https://stackoverflow.com/questions/39139815/pattern-matching-on-big-long-case-classes
-      case MessageNew(_, _, peerId, _, _, Some(Geo(coord, _))) =>
+      case MessageNew(_, _, peerId, _, _, Some(Geo(coord, _)), _) =>
         sendMessage(peerId, text = "you've send geo")
 
-      case MessageNew(_, _, peerId, _, text, _) =>
+      case MessageNew(_, _, peerId, _, text, _, _) =>
         sendMessage(peerId, text)
     })
 
