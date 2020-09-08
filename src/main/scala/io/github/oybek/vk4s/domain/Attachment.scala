@@ -8,7 +8,8 @@ case class AudioMessage(id: Long,
                         ownerId: Long,
                         duration: Int,
                         linkMp3: String,
-                        accessKey: String) extends Attachment
+                        accessKey: String,
+                        transcript: Option[String]) extends Attachment
 
 object Attachment {
   implicit val decodeAttachment: Decoder[Attachment] =
