@@ -58,7 +58,8 @@ class EventParseSpec extends AnyFlatSpec with Matchers {
             ownerId = 213461412,
             duration = 2,
             linkMp3 = "https://psv4.userapi.com/c619228//u213461412/audiomsg/d1/d9dfe160e4.mp3",
-            accessKey = "c32bc578e803704830"
+            accessKey = "c32bc578e803704830",
+            transcript = None
           )
         )
       )
