@@ -1,3 +1,3 @@
-[submodule "utils/vk4sStatsBot"]
-	path = utils/vk4sStatsBot
-	url = git@github.com:a-khakimov/vk4sStatsBot.git
+[submodule "utils/vkontaktumStatsBot"]
+	path = utils/vkontaktumStatsBot
+	url = git@github.com:a-khakimov/vkontaktumStatsBot.git

@@ -1,6 +1,6 @@
-package io.github.oybek.vk4s.api
+package io.github.oybek.vkontaktum.api
 
-import io.github.oybek.vk4s.domain.{MessageNew, WallPostNew}
+import io.github.oybek.vkontaktum.domain.{MessageNew, WallPostNew}
 
 case class GetMessageByIdReq(messageIds: List[Long],
                              version: String,

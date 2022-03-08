@@ -1,4 +1,4 @@
-package io.github.oybek.vk4s.domain
+package io.github.oybek.vkontaktum.domain
 
 final case class Coord(latitude: Float, longitude: Float) {
   def sq(x: Float) = x * x

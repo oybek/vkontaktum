@@ -1,6 +1,6 @@
-package io.github.oybek.vk4s.api
+package io.github.oybek.vkontaktum.api
 
-import io.github.oybek.vk4s.domain.ConversationAndLastMessage
+import io.github.oybek.vkontaktum.domain.ConversationAndLastMessage
 
 sealed trait Filter
 case object All extends Filter

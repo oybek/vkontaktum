@@ -1,4 +1,4 @@
-package io.github.oybek.vk4s
+package io.github.oybek.vkontaktum
 
 import org.scalatest.flatspec.AnyFlatSpec
 import org.scalatest.matchers.should.Matchers

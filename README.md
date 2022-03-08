@@ -1,4 +1,4 @@
-# Vk4s ![master](https://github.com/oybek/vk4s/workflows/master/badge.svg) [![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=oybek_vk4s&metric=ncloc)](https://sonarcloud.io/dashboard?id=oybek_vk4s) [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=oybek_vk4s&metric=coverage)](https://sonarcloud.io/dashboard?id=oybek_vk4s) <a href="https://typelevel.org/cats/"><img src="https://typelevel.org/cats/img/cats-badge.svg" height="40px" align="right" alt="Cats friendly" /></a>
+# vkontaktum ![master](https://github.com/oybek/vkontaktum/workflows/master/badge.svg) [![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=oybek_vkontaktum&metric=ncloc)](https://sonarcloud.io/dashboard?id=oybek_vkontaktum) [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=oybek_vkontaktum&metric=coverage)](https://sonarcloud.io/dashboard?id=oybek_vkontaktum) <a href="https://typelevel.org/cats/"><img src="https://typelevel.org/cats/img/cats-badge.svg" height="40px" align="right" alt="Cats friendly" /></a>
 
 Pure functional library for working with vk bot api
 

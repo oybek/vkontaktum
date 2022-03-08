@@ -1,4 +1,4 @@
-package io.github.oybek.vk4s.domain
+package io.github.oybek.vkontaktum.domain
 
 case class Peer(id: Int, `type`: String, localId: Int)
 case class Conversation(peer: Peer, unanswered: Boolean)

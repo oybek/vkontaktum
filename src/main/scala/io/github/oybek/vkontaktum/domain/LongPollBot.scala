@@ -1,9 +1,9 @@
-package io.github.oybek.vk4s.domain
+package io.github.oybek.vkontaktum.domain
 
 import cats.implicits._
 import cats.effect.Sync
-import io.github.oybek.vk4s.api.{GetLongPollServerReq, GetLongPollServerRes, PollFailed, PollReq, PollWithUpdates, VkApi}
-import io.github.oybek.vk4s.api.PollFailed
+import io.github.oybek.vkontaktum.api.{GetLongPollServerReq, GetLongPollServerRes, PollFailed, PollReq, PollWithUpdates, VkApi}
+import io.github.oybek.vkontaktum.api.PollFailed
 import org.http4s.client.Client
 import org.slf4j.{Logger, LoggerFactory}
 

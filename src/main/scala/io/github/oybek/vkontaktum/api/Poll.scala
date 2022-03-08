@@ -1,9 +1,9 @@
-package io.github.oybek.vk4s.api
+package io.github.oybek.vkontaktum.api
 
 import cats.syntax.functor._
 import io.circe.Decoder
 import io.circe.generic.auto._
-import io.github.oybek.vk4s.domain.Event
+import io.github.oybek.vkontaktum.domain.Event
 
 case class PollReq(server: String,
                    act: String = "a_check",

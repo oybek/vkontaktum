@@ -1,6 +1,6 @@
-package io.github.oybek.vk4s.api
+package io.github.oybek.vkontaktum.api
 
-import io.github.oybek.vk4s.api.WallGetRes
+import io.github.oybek.vkontaktum.api.WallGetRes
 
 trait VkApi[F[_]] {
   def getLongPollServer(

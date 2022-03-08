@@ -1,4 +1,4 @@
-package io.github.oybek.vk4s.domain
+package io.github.oybek.vkontaktum.domain
 
 import io.circe.generic.extras.auto._
 import io.circe.{Decoder, HCursor}

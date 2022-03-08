@@ -1,18 +1,17 @@
-package io.github.oybek.vk4s
+package io.github.oybek.vkontaktum
 
-import cats.effect.concurrent.Ref
 import cats.effect.syntax.all._
-import cats.effect.{Async, Clock, Concurrent, Sync, Timer}
+import cats.effect.{Async, Clock, Concurrent, Sync}
 import cats.syntax.all._
-import io.github.oybek.vk4s.domain.{Geo, LongPollBot, MessageNew, WallPostNew, WallReplyNew}
-import io.github.oybek.vk4s.api.{GetLongPollServerReq, Keyboard, SendMessageReq, VkApi}
-import io.github.oybek.vk4s.api.Keyboard
+import io.github.oybek.vkontaktum.domain.{Geo, LongPollBot, MessageNew, WallPostNew, WallReplyNew}
+import io.github.oybek.vkontaktum.api.{GetLongPollServerReq, Keyboard, SendMessageReq, VkApi}
+import io.github.oybek.vkontaktum.api.Keyboard
 import org.http4s.client.Client
 import org.slf4j.{Logger, LoggerFactory}
 
 import scala.concurrent.duration.MILLISECONDS
 
-class VkBot[F[_]: Async: Timer: Concurrent](getLongPollServerReq: GetLongPollServerReq)(implicit httpClient: Client[F],
+class VkBot[F[_]: Async: Concurrent](getLongPollServerReq: GetLongPollServerReq)(implicit httpClient: Client[F],
                                                                                         vkApi: VkApi[F])
     extends LongPollBot[F](httpClient, vkApi, getLongPollServerReq) {
 
@@ -49,8 +48,8 @@ class VkBot[F[_]: Async: Timer: Concurrent](getLongPollServerReq: GetLongPollSer
       keyboard = keyboard
     )
     for {
-      time <- Clock[F].realTime(MILLISECONDS)
-      _ <- vkApi.sendMessage(sendMessageReq.copy(randomId = time)).void
+      time <- Clock[F].realTime
+      _ <- vkApi.sendMessage(sendMessageReq.copy(randomId = time.toMillis)).void
       _ <- Sync[F].delay { log.info(s"send message: $sendMessageReq") }
     } yield ()
   }

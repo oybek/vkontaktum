@@ -1,4 +1,4 @@
-package io.github.oybek.vk4s
+package io.github.oybek.vkontaktum
 
 import io.circe.generic.extras.Configuration
 

@@ -1,4 +1,4 @@
-package io.github.oybek.vk4s.api
+package io.github.oybek.vkontaktum.api
 
 import cats.data.NonEmptyList
 import cats.effect.Sync
@@ -19,7 +19,7 @@ case class SendMessageReq(peerId: Option[Long],
     extends Req {
   def toRequestStr: String = ""
 
-  def toMultipart[F[_]: Sync]: Multipart[F] =
+  def toMultipart[F[_]]: Multipart[F] =
     Multipart[F](
       Vector(
         "peer_id" -> peerId.map(_.toString),
