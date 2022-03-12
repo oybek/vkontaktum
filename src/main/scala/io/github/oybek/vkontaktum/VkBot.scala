@@ -12,7 +12,7 @@ import org.slf4j.{Logger, LoggerFactory}
 import scala.concurrent.duration.MILLISECONDS
 
 class VkBot[F[_]: Async: Concurrent](getLongPollServerReq: GetLongPollServerReq)(implicit httpClient: Client[F],
-                                                                                        vkApi: VkApi[F])
+                                                                                          vkApi: VkApi[F])
     extends LongPollBot[F](httpClient, vkApi, getLongPollServerReq) {
 
   implicit val log: Logger = LoggerFactory.getLogger("VkGate")

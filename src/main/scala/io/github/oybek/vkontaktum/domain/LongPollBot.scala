@@ -1,13 +1,14 @@
 package io.github.oybek.vkontaktum.domain
 
+import cats.effect.{Async, Sync}
 import cats.implicits._
-import cats.effect.Sync
 import io.github.oybek.vkontaktum.api.{GetLongPollServerReq, GetLongPollServerRes, PollFailed, PollReq, PollWithUpdates, VkApi}
-import io.github.oybek.vkontaktum.api.PollFailed
 import org.http4s.client.Client
-import org.slf4j.{Logger, LoggerFactory}
+import org.slf4j.Logger
 
-abstract class LongPollBot[F[_]: Sync](
+import scala.concurrent.duration.DurationInt
+
+abstract class LongPollBot[F[_]: Async](
   httpClient: Client[F],
   vkApi: VkApi[F],
   getLongPollServerReq: GetLongPollServerReq
@@ -20,9 +21,17 @@ abstract class LongPollBot[F[_]: Sync](
       attemptRes <- vkApi.getLongPollServer(getLongPollServerReq).attempt
       res <- attemptRes match {
         case Left(e: Exception) =>
-          Sync[F].delay { log.warn(s"something went wrong: ${e.getMessage}") } >> getLongPollServer
+          for {
+            _ <- Async[F].delay { log.warn(s"something went wrong: ${e.getMessage}") }
+            _ <- Async[F].sleep(10.seconds)
+            server <- getLongPollServer
+          } yield server
         case Left(e) =>
-          Sync[F].delay { log.warn(s"something went too wrong: ${e.getMessage}") } >> getLongPollServer
+          for {
+            _ <- Async[F].delay { log.warn(s"something went too wrong: ${e.getMessage}") }
+            _ <- Async[F].sleep(100.seconds)
+            server <- getLongPollServer
+          } yield server
         case Right(x) => x.pure[F]
       }
     } yield res
@@ -46,6 +55,7 @@ abstract class LongPollBot[F[_]: Sync](
             _ <- Sync[F].delay {
               log.warn(s"something went wrong: ${e.getMessage}")
             }
+            _ <- Async[F].sleep(10.seconds)
             _ <- start
           } yield ()
 
@@ -54,6 +64,7 @@ abstract class LongPollBot[F[_]: Sync](
             _ <- Sync[F].delay {
               log.error(s"something went too wrong: ${e.getMessage}")
             }
+            _ <- Async[F].sleep(100.seconds)
             _ <- start
           } yield ()
       }
