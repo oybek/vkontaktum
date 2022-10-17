@@ -9,7 +9,7 @@ import io.circe.{Encoder, Printer}
 import org.http4s.multipart.{Multipart, Part}
 
 case class SendMessageReq(peerId: Option[Long],
-                          peerIds: List[Long],
+                          peerIds: Option[NonEmptyList[Long]],
                           message: String,
                           version: String,
                           randomId: Long,
@@ -24,7 +24,7 @@ case class SendMessageReq(peerId: Option[Long],
     Multipart[F](
       Vector(
         "peer_id" -> peerId.map(_.toString),
-        "peer_ids" -> Some(peerIds.mkString(",")),
+        "peer_ids" -> peerIds.map(_.toList.mkString(",")),
         "access_token" -> Some(accessToken),
         "v" -> Some(version),
         "random_id" -> Some(randomId.toString),
